@@ -1,0 +1,18 @@
+C = Collectible 
+E = Exit
+M = Mob statique
+H = Mob Horizontaux
+V = Mob Verticaux
+0 = Sol
+1 = Mur
+
+I = Mob defini A VOIR
+
+Malloc:
+- *hm_direc;
+- *vm_direc;
+- **map;
+- **mobs;
+- **hmobs;
+- **vmobs;
+- **col;

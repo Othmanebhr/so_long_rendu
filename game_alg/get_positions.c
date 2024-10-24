@@ -1,0 +1,105 @@
+#include "../so_long.h"
+
+static void get_positions(int *x, int *y, int pos_x, int pos_y)
+{
+    *x = pos_x * SIZE;
+    *y = pos_y * SIZE;
+}
+
+void get_all_mobs(t_game *game)
+{
+    int i, j;
+
+    game->mob_count = 0;
+    i = 0;
+    while (game->map[i])
+    {
+        j = 0;
+        while (game->map[i][j])
+        {
+            if (game->map[i][j] == 'M')
+                game->mob_count++;
+            j++;
+        }
+        i++;
+    }
+    game->mobs = malloc(sizeof(int *) * game->mob_count);
+    if (!game->mobs)
+        handle_error("Allocation error for mobs");
+    i = 0;
+    while (i < game->mob_count)
+    {
+        game->mobs[i] = malloc(sizeof(int) * 2);
+        if (!game->mobs[i])
+            handle_error("Allocation error for mobs coordinates");
+        i++;
+    }
+}
+
+static void get_all_col(t_game *game)
+{
+    int i, j;
+
+    game->c_count = 0;
+    i = 0;
+    while (game->map[i])
+    {
+        j = 0;
+        while (game->map[i][j])
+        {
+            if (game->map[i][j] == 'C')
+                game->c_count++;
+            j++;
+        }
+        i++;
+    }
+    game->col = malloc(sizeof(int *) * game->c_count);
+    if (!game->col)
+        handle_error("Allocation error for collectibles");
+    i = 0;
+    while (i < game->c_count)
+    {
+        game->col[i] = malloc(sizeof(int) * 2);
+        if (!game->col[i])
+            handle_error("Allocation error for collectible coordinates");
+        i++;
+    }
+}
+
+void check_every_position(t_game *game)
+{
+    int i;
+    int j;
+    int m_idx;
+    int c_idx;
+
+    m_idx = 0;
+    c_idx = 0;
+    game->c_count = 0;
+    i = 0;
+    get_all_mobs(game);
+    get_all_col(game);
+    while (game->map[i])
+    {
+        j = 0;
+        while (game->map[i][j])
+        {
+            if (game->map[i][j] == 'C')
+            {
+                get_positions(&game->col[c_idx][0], &game->col[c_idx][1], j, i);
+                c_idx++;
+            }
+            if (game->map[i][j] == 'P')
+                get_positions(&game->player_x, &game->player_y, j, i);
+            if (game->map[i][j] == 'M')
+            {
+                get_positions(&game->mobs[m_idx][0], &game->mobs[m_idx][1], j, i);
+                m_idx++;
+            }
+            if (game->map[i][j] == 'E')
+                get_positions(&game->exit_x, &game->exit_y, j, i);
+            j++;
+        }
+        i++;
+    }
+}
