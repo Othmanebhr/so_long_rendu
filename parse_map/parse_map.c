@@ -18,7 +18,7 @@ static void	check_player(t_game *game, int fd)
 	int	j;
 	int	check;
 
-	i = 0;;
+	i = 0;
 	check = 0;
 	while (game->map[i])
 	{
@@ -92,28 +92,32 @@ static void check_if_char_is_known(char c, int fd, t_game *game)
 		handle_error_close_free("Characters aren't known!", fd, game->map);
 }
 
-static void	check_char(t_game *game, int fd)
+static void check_char(t_game *game, int fd)
 {
-	int i;
-	int	y;
+    int i;
+    int j;
 
-	i = 0;
-	while(game->map[i])
-	{
-		y = 0;
-		while(game->map[i][y])
-		{
-			if (game->map[i][y] == 'P')
-			{
-				game->player_x = y * SIZE;
-				game->player_y = i * SIZE;
-			}
-			check_if_char_is_known(game->map[i][y], fd, game);
-			y++;
-		}
-		i++;
-	}
+    i = 0;
+    game->c_count = 0;  // Initialise le nombre de collectables ici
+    while (game->map[i])
+    {
+        j = 0;
+        while (game->map[i][j])
+        {
+            if (game->map[i][j] == 'P')
+            {
+                game->player_x = j * SIZE;
+                game->player_y = i * SIZE;
+            }
+            if (game->map[i][j] == 'C')  // Compter les collectables
+                game->c_count++;
+            check_if_char_is_known(game->map[i][j], fd, game);  // Vérifie les caractères
+            j++;
+        }
+        i++;
+    }
 }
+
 
 static void	check_rest(t_game *game, int fd)
 {
@@ -150,7 +154,5 @@ void	open_and_fill_map(t_game *game, char **av)
 	close(fd);
 }
 
-//Faire en sorte qu'un chemin existe
-//Bien verif le bon type de fichier
 //Leak si il n'y a pas le nombre de collone
 //Invalid read pour les collone (Je crois)

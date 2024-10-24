@@ -36,11 +36,15 @@ void get_all_mobs(t_game *game)
     }
 }
 
-static void get_all_col(t_game *game)
+void get_all_col(t_game *game)
 {
-    int i, j;
+    int i;
+    int j;
+    int index = 0;
 
-    game->c_count = 0;
+    game->col = malloc(sizeof(int *) * game->c_count);
+    if (!game->col)
+        handle_error("Allocation error for collectibles");
     i = 0;
     while (game->map[i])
     {
@@ -48,20 +52,16 @@ static void get_all_col(t_game *game)
         while (game->map[i][j])
         {
             if (game->map[i][j] == 'C')
-                game->c_count++;
+            {
+                game->col[index] = malloc(sizeof(int) * 2);  // Stockage des coordonnées (x, y)
+                if (!game->col[index])
+                    handle_error("Allocation error for collectible coordinates");
+                game->col[index][0] = j;  // x-coordinate
+                game->col[index][1] = i;  // y-coordinate
+                index++;
+            }
             j++;
         }
-        i++;
-    }
-    game->col = malloc(sizeof(int *) * game->c_count);
-    if (!game->col)
-        handle_error("Allocation error for collectibles");
-    i = 0;
-    while (i < game->c_count)
-    {
-        game->col[i] = malloc(sizeof(int) * 2);
-        if (!game->col[i])
-            handle_error("Allocation error for collectible coordinates");
         i++;
     }
 }
@@ -75,7 +75,6 @@ void check_every_position(t_game *game)
 
     m_idx = 0;
     c_idx = 0;
-    game->c_count = 0;
     i = 0;
     get_all_mobs(game);
     get_all_col(game);

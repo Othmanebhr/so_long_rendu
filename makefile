@@ -23,6 +23,7 @@ SRCS = so_long.c \
 			parse_map/parse_map.c \
 			parse_map/walls.c \
 			parse_map/collumns_and_line.c \
+			parse_map/flood_file.c \
 			game_alg/get_positions.c \
 			game_alg/key_mv.c \
 			game_alg/put_img.c \

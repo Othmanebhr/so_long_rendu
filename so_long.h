@@ -52,6 +52,7 @@ void	open_and_fill_map(t_game *game, char **av);
 void	check_walls(t_game	*game, int fd);
 int		count_line(char	*file);
 int		count_collumns(char *file);
+int		is_map_solvable(t_game *game);
 
 //utils
 void	handle_error(char *str);
