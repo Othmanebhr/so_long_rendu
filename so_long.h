@@ -36,6 +36,7 @@ typedef struct s_game
 	int		mob_count;
 	int		**col;
 	int		c_count;
+	int		colected_count;
 	int		exit_x;
 	int		exit_y;
 	void	*wall_img;

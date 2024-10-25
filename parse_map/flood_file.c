@@ -14,18 +14,21 @@
 
 static void flood_fill(char **map_copy, int x, int y, int *col, int *exit_rchd)
 {
-    if (map_copy[y][x] == '1' || map_copy[y][x] == 'F')
-        return;
+    if (map_copy[y][x] == '1' || map_copy[y][x] == 'F' || map_copy[y][x] == 'M')
+        return;  // Ignorer murs, mobs et cases déjà visitées
     if (map_copy[y][x] == 'C')
         (*col)--;
     if (map_copy[y][x] == 'E')
         *exit_rchd = 1;
-    map_copy[y][x] = 'F';
+
+    map_copy[y][x] = 'F';  // Marquer la case comme visitée
+
     flood_fill(map_copy, x + 1, y, col, exit_rchd);
     flood_fill(map_copy, x - 1, y, col, exit_rchd);
     flood_fill(map_copy, x, y + 1, col, exit_rchd);
     flood_fill(map_copy, x, y - 1, col, exit_rchd);
 }
+
 
 int is_map_solvable(t_game *game)
 {

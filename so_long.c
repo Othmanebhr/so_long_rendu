@@ -21,6 +21,18 @@ static void check_file_extension(char *filename)
         handle_error("The file must have a .ber extension");
 }
 
+static void init_game(t_game *game)
+{
+    // game->c_count = 0;
+    game->colected_count = 0;
+    // game->moves = 0;
+    // game->player_x = 0;
+    // game->player_y = 0;
+    // game->map = NULL;
+    // game->col = NULL;
+}
+
+
 int main(int ac, char **av)
 {
     t_game game;
@@ -39,6 +51,7 @@ int main(int ac, char **av)
         handle_error("Failed to initialize mlx");
     }
     game.win = mlx_new_window(game.mlx, game.map_width * SIZE, game.map_height *SIZE, "so_long");
+    init_game(&game);
     load_img(&game);
     check_every_position(&game);
     render_map(&game, game.map);
@@ -47,9 +60,7 @@ int main(int ac, char **av)
     return (0);
 }
 
-//bien ajouté les verifs si on supprime les images
-//gerer les colision avec les ennememis, gerer la sortie
-//Voir pour ajouter 
+//erreur syscall Xlib (libx11 d'apres chatgpt)
 
 // int main(int ac, char **av)
 // {

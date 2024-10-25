@@ -155,4 +155,4 @@ void	open_and_fill_map(t_game *game, char **av)
 }
 
 //Leak si il n'y a pas le nombre de collone
-//Invalid read pour les collone (Je crois)
+// Voir map5.ber, leak venant gnl

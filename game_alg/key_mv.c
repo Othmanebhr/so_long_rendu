@@ -43,12 +43,12 @@ static void check_action(int new_x, int new_y, t_game *game)
         game->player_y = new_y;
         mlx_put_image_to_window(game->mlx, game->win, game->player_img, game->player_x, game->player_y);
         game->map[new_y / SIZE][new_x / SIZE] = '0';
-        game->c_count--;
-        ft_printf("collectible restant: %d\n", game->c_count);
+        game->colected_count++;
+        ft_printf("collectible restant: %d\n", game->c_count - game->colected_count);
     }
     if (game->map[new_y / SIZE][new_x / SIZE] == 'E')
     {
-        if (game->c_count == 0)
+        if (game->c_count == game->colected_count)
             game_win(game);
     }
 }// Parfois la sortie ne marche pas, le point de depart n'est plus accessible
