@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 14:16:28 by root              #+#    #+#             */
-/*   Updated: 2024/10/24 15:31:50 by root             ###   ########.fr       */
+/*   Updated: 2024/10/25 13:40:08 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,10 @@ int		key_hook(int keycode, t_game *game);
 //Img
 void	load_img(t_game *game);
 void	render_map(t_game *game, char **map);
+
+//End game
+void	game_win(t_game *game);
+void	game_over(t_game *game);
+void	free_game_resources(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 00:37:35 by root              #+#    #+#             */
-/*   Updated: 2024/10/24 15:55:37 by root             ###   ########.fr       */
+/*   Updated: 2024/10/25 14:08:25 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ static void check_action(int new_x, int new_y, t_game *game)
         mlx_put_image_to_window(game->mlx, game->win, game->player_img, game->player_x, game->player_y);
     }
     if (game->map[new_y / SIZE][new_x / SIZE] == 'M')
-    {
-        mlx_destroy_window(game->mlx, game->win);
-        exit(EXIT_SUCCESS);
-    }
+        game_over(game);
     if (game->map[new_y / SIZE][new_x / SIZE] == 'C')
     {
         mlx_put_image_to_window(game->mlx, game->win, game->floor_img, game->player_x, game->player_y);
@@ -52,10 +49,7 @@ static void check_action(int new_x, int new_y, t_game *game)
     if (game->map[new_y / SIZE][new_x / SIZE] == 'E')
     {
         if (game->c_count == 0)
-        {
-            mlx_destroy_window(game->mlx, game->win);
-            exit(EXIT_SUCCESS);
-        }
+            game_win(game);
     }
 }// Parfois la sortie ne marche pas, le point de depart n'est plus accessible
 
@@ -79,7 +73,8 @@ int key_hook(int keycode, t_game *game)
     new_y = game->player_y;
     if (keycode == 65307) // Touche Echap pour quitter
     {
-        mlx_destroy_window(game->mlx, game->win);
+        // mlx_destroy_window(game->mlx, game->win);
+        free_game_resources(game);
         exit(EXIT_SUCCESS);
     }
     if (keycode == 65361) // Flèche gauche

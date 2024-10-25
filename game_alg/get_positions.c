@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_positions.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/25 13:49:24 by root              #+#    #+#             */
+/*   Updated: 2024/10/25 13:53:19 by root             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
 
 static void get_positions(int *x, int *y, int pos_x, int pos_y)
@@ -25,13 +37,19 @@ void get_all_mobs(t_game *game)
     }
     game->mobs = malloc(sizeof(int *) * game->mob_count);
     if (!game->mobs)
+    {
+        free_game_resources(game);
         handle_error("Allocation error for mobs");
+    }
     i = 0;
     while (i < game->mob_count)
     {
         game->mobs[i] = malloc(sizeof(int) * 2);
         if (!game->mobs[i])
+        {
+            free_game_resources(game);
             handle_error("Allocation error for mobs coordinates");
+        }
         i++;
     }
 }
@@ -44,7 +62,10 @@ void get_all_col(t_game *game)
 
     game->col = malloc(sizeof(int *) * game->c_count);
     if (!game->col)
+    {
+        free_game_resources(game);
         handle_error("Allocation error for collectibles");
+    }
     i = 0;
     while (game->map[i])
     {
@@ -55,7 +76,10 @@ void get_all_col(t_game *game)
             {
                 game->col[index] = malloc(sizeof(int) * 2);  // Stockage des coordonnées (x, y)
                 if (!game->col[index])
+                {
+                    free_game_resources(game);
                     handle_error("Allocation error for collectible coordinates");
+                }
                 game->col[index][0] = j;  // x-coordinate
                 game->col[index][1] = i;  // y-coordinate
                 index++;

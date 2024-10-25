@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 20:03:18 by root              #+#    #+#             */
-/*   Updated: 2024/10/24 15:58:32 by root             ###   ########.fr       */
+/*   Updated: 2024/10/25 13:41:43 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ int main(int ac, char **av)
     game.moves = 0;
     game.mlx = mlx_init();
     if (!game.mlx)
+    {
+        free_game_resources(&game);
         handle_error("Failed to initialize mlx");
+    }
     game.win = mlx_new_window(game.mlx, game.map_width * SIZE, game.map_height *SIZE, "so_long");
     load_img(&game);
     check_every_position(&game);
