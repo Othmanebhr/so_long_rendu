@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 14:16:28 by root              #+#    #+#             */
-/*   Updated: 2024/10/25 13:40:08 by root             ###   ########.fr       */
+/*   Updated: 2024/10/26 21:07:46 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	handle_error_close_free(char *str, int fd, char **map);
 
 //alg
 void	check_every_position(t_game *game);
+void	get_all_col(t_game *g);
+void	get_all_mobs(t_game *g);
 int		key_hook(int keycode, t_game *game);
 
 //Img

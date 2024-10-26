@@ -6,29 +6,29 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 23:29:40 by root              #+#    #+#             */
-/*   Updated: 2024/10/14 02:50:31 by root             ###   ########.fr       */
+/*   Updated: 2024/10/26 21:38:20 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static void	upper_walls(t_game	*game, int fd)
+static void	upper_walls(t_game *g, int fd)
 {
 	int	i;
 
 	i = 0;
-	while (game->map[0][i])
+	while (g->map[0][i])
 	{
-		if (game->map[0][i] != '1' && game->map[0][i] != '\n')
+		if (g->map[0][i] != '1' && g->map[0][i] != '\n')
 		{
-			perror("Veuillez mettre des murs tout autour de la map! (murs du dessus)");
+			perror("Veuillez mettre des murs tout autour de la map!(dessus)");
 			i = 0;
-			while(game->map[i] != NULL)
+			while (g->map[i] != NULL)
 			{
-				free(game->map[i]);
+				free(g->map[i]);
 				i++;
 			}
-			free(game->map);
+			free(g->map);
 			close(fd);
 			exit(EXIT_FAILURE);
 		}
@@ -36,23 +36,23 @@ static void	upper_walls(t_game	*game, int fd)
 	}
 }
 
-static void	bottom_wall(t_game	*game, int fd, int idx)
+static void	bottom_wall(t_game *g, int fd, int idx)
 {
 	int	i;
 
 	i = 0;
-	while (game->map[idx][i])
+	while (g->map[idx][i])
 	{
-		if (game->map[idx][i] != '1' && game->map[idx][i] != '\n')
+		if (g->map[idx][i] != '1' && g->map[idx][i] != '\n')
 		{
-			perror("Veuillez mettre des murs tout autour de la map! (murs du dessous)");
+			perror("Veuillez mettre des murs tout autour de la map!(dessous)");
 			i = 0;
-			while(game->map[i] != NULL)
+			while (g->map[i] != NULL)
 			{
-				free(game->map[i]);
+				free(g->map[i]);
 				i++;
 			}
-			free(game->map);
+			free(g->map);
 			close(fd);
 			exit(EXIT_FAILURE);
 		}
@@ -60,29 +60,29 @@ static void	bottom_wall(t_game	*game, int fd, int idx)
 	}
 }
 
-void	check_walls(t_game	*game, int fd)
+void	check_walls(t_game *g, int fd)
 {
 	int	i;
 	int	y;
 
 	i = 0;
 	y = 1;
-	upper_walls(game, fd);
-	while (game->map[y + 1] != NULL)
+	upper_walls(g, fd);
+	while (g->map[y + 1] != NULL)
 	{
-		if (game->map[y][0] != '1' || game->map[y][ft_strlen(game->map[y]) - 2] != '1')
+		if (g->map[y][0] != '1' || g->map[y][ft_strlen(g->map[y]) - 2] != '1')
 		{
-			perror("Veuillez mettre des murs tout autour de la map! (murs de cotés)");
+			perror("Veuillez mettre des murs tout autour de la map!(cotés)");
 			i = 0;
-			while(game->map[i] != NULL)
+			while (g->map[i] != NULL)
 			{
-				free(game->map[i]);
+				free(g->map[i]);
 				i++;
 			}
-			free(game->map);
+			free(g->map);
 			exit(EXIT_FAILURE);
 		}
 		y++;
 	}
-	bottom_wall(game, fd, y);
+	bottom_wall(g, fd, y);
 }

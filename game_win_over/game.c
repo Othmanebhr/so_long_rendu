@@ -6,11 +6,21 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:30:59 by root              #+#    #+#             */
-/*   Updated: 2024/10/25 14:08:21 by root             ###   ########.fr       */
+/*   Updated: 2024/10/26 19:42:10 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+static void	free_game_resources3(t_game *game)
+{
+	if (game->wall_img)
+		mlx_destroy_image(game->mlx, game->wall_img);
+	if (game->collectible_img)
+		mlx_destroy_image(game->mlx, game->collectible_img);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
+}
 
 static void	free_game_resources2(t_game *game)
 {
@@ -34,12 +44,7 @@ static void	free_game_resources2(t_game *game)
 		mlx_destroy_image(game->mlx, game->exit_img);
 	if (game->mob_img)
 		mlx_destroy_image(game->mlx, game->mob_img);
-	if (game->wall_img)
-		mlx_destroy_image(game->mlx, game->wall_img);
-	if (game->collectible_img)
-		mlx_destroy_image(game->mlx, game->collectible_img);
-	if (game->win)
-		mlx_destroy_window(game->mlx, game->win);
+	free_game_resources3(game);
 	if (game->mlx)
 		mlx_destroy_display(game->mlx);
 	free(game->mlx);

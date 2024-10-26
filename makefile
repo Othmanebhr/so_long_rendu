@@ -6,7 +6,7 @@
 #    By: root <root@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/12 21:31:32 by root              #+#    #+#              #
-#    Updated: 2024/10/25 13:42:37 by root             ###   ########.fr        #
+#    Updated: 2024/10/26 20:57:42 by root             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS = so_long.c \
 			game_alg/key_mv.c \
 			game_alg/put_img.c \
 			game_win_over/game.c \
+			game_alg/get_all.c \
 
 # Dossier de libft
 LIBFT_DIR = ./libft
