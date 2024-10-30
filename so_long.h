@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 14:16:28 by root              #+#    #+#             */
-/*   Updated: 2024/10/26 21:07:46 by root             ###   ########.fr       */
+/*   Updated: 2024/10/27 15:34:11 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,12 @@ void	check_walls(t_game	*game, int fd);
 int		count_line(char	*file);
 int		count_collumns(char *file);
 int		is_map_solvable(t_game *game);
+//Check characters
+void	check_char(t_game *g, int fd);
+void	check_if_char_is_known(char c, int fd, t_game *g);
+void	check_item(t_game *g, int fd);
+void	check_exit(t_game *g, int fd);
+void	check_player(t_game *g, int fd);
 
 //utils
 void	handle_error(char *str);

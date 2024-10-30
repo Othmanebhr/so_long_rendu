@@ -6,20 +6,22 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 00:37:35 by root              #+#    #+#             */
-/*   Updated: 2024/10/26 21:29:13 by root             ###   ########.fr       */
+/*   Updated: 2024/10/30 01:54:28 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	display_move_count(t_game *g)
+static void	display_move_count(t_game *g)
 {
 	char	*str;
 	char	*s;
 
 	str = ft_itoa(g->moves);
-	s = ft_strjoin("Mouvement", str);
-	mlx_string_put(g->mlx, g->win, 10, 10, 0xFFFFFF, s); // Afficher le compteur
+	s = ft_strjoin("Mouvement : ", str);
+	mlx_put_image_to_window(g->mlx, g->win, g->wall_img, 0, 0);
+	mlx_put_image_to_window(g->mlx, g->win, g->wall_img, 64, 0);
+	mlx_string_put(g->mlx, g->win, 10, 10, 0xFFFFFF, s);
 	free(str);
 	free(s);
 }
@@ -49,7 +51,7 @@ static void	check_action2(int new_x, int new_y, t_game *g)
 
 static void	check_action(int new_x, int new_y, t_game *g)
 {
-	if (g->map[new_y / SIZE][new_x / SIZE] == '0' 
+	if (g->map[new_y / SIZE][new_x / SIZE] == '0'
 		|| g->map[new_y / SIZE][new_x / SIZE] == 'P' )
 	{
 		mlx_put_image_to_window(g->mlx, g->win,
@@ -73,14 +75,14 @@ static void	check_if_walls(int new_x, int new_y, t_game *g)
 		&& new_y >= 0 && new_y < g->map_height * SIZE)
 	{
 		if (g->map[new_y / SIZE][new_x / SIZE] != '1') // Si ce n'est pas un mur
-			check_action(new_x, new_y, g);  
+			check_action(new_x, new_y, g);
 	}
 }
 
 int	key_hook(int keycode, t_game *g)
 {
-	int new_x;
-	int new_y;
+	int	new_x;
+	int	new_y;
 
 	new_x = g->player_x;
 	new_y = g->player_y;

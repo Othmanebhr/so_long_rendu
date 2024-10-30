@@ -6,7 +6,7 @@
 #    By: root <root@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/12 21:31:32 by root              #+#    #+#              #
-#    Updated: 2024/10/26 20:57:42 by root             ###   ########.fr        #
+#    Updated: 2024/10/27 15:35:20 by root             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS = so_long.c \
 			parse_map/walls.c \
 			parse_map/collumns_and_line.c \
 			parse_map/flood_file.c \
+			parse_map/check_everything.c \
 			game_alg/get_positions.c \
 			game_alg/key_mv.c \
 			game_alg/put_img.c \

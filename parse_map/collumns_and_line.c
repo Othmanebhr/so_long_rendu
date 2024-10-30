@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 00:02:32 by root              #+#    #+#             */
-/*   Updated: 2024/10/26 21:35:08 by root             ###   ########.fr       */
+/*   Updated: 2024/10/27 15:40:34 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static void	count_collumns2(int count, int fd)
 	char	*collumns;
 
 	count_check = 0;
-	while ((collumns = get_next_line(fd)) != NULL)
+	collumns = get_next_line(fd);
+	while (collumns != NULL)
 	{
 		count_check = ft_strlen(collumns);
 		if (collumns[ft_strlen(collumns) - 1] == '\n')
@@ -42,6 +43,7 @@ static void	count_collumns2(int count, int fd)
 			handle_error_close("Vous n'avez pas le même nombre de colonne", fd);
 		}
 		free(collumns);
+		collumns = get_next_line(fd);
 	}
 }
 

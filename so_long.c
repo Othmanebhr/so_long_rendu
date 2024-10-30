@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 20:03:18 by root              #+#    #+#             */
-/*   Updated: 2024/10/26 21:39:20 by root             ###   ########.fr       */
+/*   Updated: 2024/10/30 01:52:04 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,20 @@ static void	check_file_extension(char *filename)
 		handle_error("The file must have a .ber extension");
 }
 
+static void	init_s(t_game *g)
+{
+	g->moves = 0;
+	g->colected_count = 0;
+	g->collectible_img = NULL;
+	g->mob_img = NULL;
+	g->exit_img = NULL;
+	g->wall_img = NULL;
+	g->floor_img = NULL;
+	g->player_img = NULL;
+	g->mobs = NULL;
+	g->col = NULL;
+}
+
 int	main(int ac, char **av)
 {
 	t_game	g;
@@ -31,8 +45,7 @@ int	main(int ac, char **av)
 		handle_error("Too few arguments");
 	check_file_extension(av[1]);
 	open_and_fill_map(&g, av);
-	g.moves = 0;
-	g.colected_count = 0;
+	init_s(&g);
 	g.mlx = mlx_init();
 	if (!g.mlx)
 	{

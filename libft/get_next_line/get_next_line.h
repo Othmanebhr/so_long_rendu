@@ -6,11 +6,11 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 22:21:27 by obouhour          #+#    #+#             */
-/*   Updated: 2024/10/12 21:17:26 by root             ###   ########.fr       */
+/*   Updated: 2024/10/27 15:28:46 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	ifndef GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE

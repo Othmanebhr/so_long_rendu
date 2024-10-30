@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 18:03:03 by root              #+#    #+#             */
-/*   Updated: 2024/10/20 18:06:33 by root             ###   ########.fr       */
+/*   Updated: 2024/10/27 15:27:06 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	free_dbl_tab(char **tab)
 	if (!tab)
 		return ;
 	i = 0;
-	while(tab[i])
+	while (tab[i])
 	{
 		free(tab[i]);
 		i++;
