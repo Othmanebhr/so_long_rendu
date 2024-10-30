@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collumns_and_line.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: obouhour <obouhour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 00:02:32 by root              #+#    #+#             */
-/*   Updated: 2024/10/27 15:40:34 by root             ###   ########.fr       */
+/*   Updated: 2024/10/30 13:48:14 by obouhour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,25 +93,3 @@ int	count_line(char *file)
 	close(fd);
 	return (count);
 }
-
-// int	count_line(char	*file)
-// {
-// 	int		count;
-// 	int		fd;
-// 	char	*line;
-
-// 	count = 0;
-// 	fd = open(file, O_RDONLY);
-// 	if (fd < 0)
-// 	{
-// 		perror("L'ouverture de la map a échoué");
-// 		exit(EXIT_FAILURE);
-// 	}
-// 	while ((line = get_next_line(fd)) != NULL)
-// 	{
-// 		count++;
-// 		free(line);
-// 	}
-// 	close(fd);
-// 	return (count);
-// }

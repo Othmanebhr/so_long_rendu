@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_all.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: obouhour <obouhour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 20:48:00 by root              #+#    #+#             */
-/*   Updated: 2024/10/26 21:22:48 by root             ###   ########.fr       */
+/*   Updated: 2024/10/30 13:49:24 by obouhour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ void	get_all_mobs(t_game *g)
 
 static void	store_col(t_game *g, int j, int i, int *index)
 {
-	g->col[*index] = malloc(sizeof(int) * 2);// Stockage des coordonnées (x, y)
+	g->col[*index] = malloc(sizeof(int) * 2);
 	if (!g->col[*index])
 	{
 		free_game_resources(g);
 		handle_error("Allocation error for collectible coordinates");
 	}
-	g->col[*index][0] = j;// x-coordinate
-	g->col[*index][1] = i;// y-coordinate
+	g->col[*index][0] = j;
+	g->col[*index][1] = i;
 	(*index)++;
 }
 

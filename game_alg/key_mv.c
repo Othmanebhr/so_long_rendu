@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_mv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: obouhour <obouhour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 00:37:35 by root              #+#    #+#             */
-/*   Updated: 2024/10/30 01:54:28 by root             ###   ########.fr       */
+/*   Updated: 2024/10/30 17:13:08 by obouhour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,10 @@ static void	check_action(int new_x, int new_y, t_game *g)
 
 static void	check_if_walls(int new_x, int new_y, t_game *g)
 {
-	// Vérifier les limites de la carte et les collisions avec les murs
 	if (new_x >= 0 && new_x < g->map_width * SIZE
 		&& new_y >= 0 && new_y < g->map_height * SIZE)
 	{
-		if (g->map[new_y / SIZE][new_x / SIZE] != '1') // Si ce n'est pas un mur
+		if (g->map[new_y / SIZE][new_x / SIZE] != '1')
 			check_action(new_x, new_y, g);
 	}
 }
@@ -86,20 +85,21 @@ int	key_hook(int keycode, t_game *g)
 
 	new_x = g->player_x;
 	new_y = g->player_y;
-	if (keycode == 65307) // Touche Echap pour quitter
+	if (keycode == 65307)
 	{
-		// mlx_destroy_window(g->mlx, g->win);
 		free_game_resources(g);
 		exit(EXIT_SUCCESS);
 	}
-	if (keycode == 65361) // Flèche gauche
+	if (keycode == 65361)
 		new_x -= SIZE;
-	else if (keycode == 65363) // Flèche droite
+	else if (keycode == 65363)
 		new_x += SIZE;
-	else if (keycode == 65362) // Flèche haut
+	else if (keycode == 65362)
 		new_y -= SIZE;
-	else if (keycode == 65364) // Flèche bas
+	else if (keycode == 65364)
 		new_y += SIZE;
-	check_if_walls(new_x, new_y, g);
+	if (keycode == 65361 || keycode == 65362 || keycode == 65363
+		|| keycode == 65364)
+		check_if_walls(new_x, new_y, g);
 	return (0);
 }

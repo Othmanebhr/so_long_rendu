@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: obouhour <obouhour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 20:03:18 by root              #+#    #+#             */
-/*   Updated: 2024/10/30 01:52:04 by root             ###   ########.fr       */
+/*   Updated: 2024/10/30 17:11:47 by obouhour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ static void	init_s(t_game *g)
 	g->col = NULL;
 }
 
+static int	close_window(t_game *g)
+{
+	free_game_resources(g);
+	exit(0);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_game	g;
@@ -58,25 +65,7 @@ int	main(int ac, char **av)
 	check_every_position(&g);
 	render_map(&g, g.map);
 	mlx_key_hook(g.win, key_hook, &g);
+	mlx_hook(g.win, 17, 0, close_window, &g);
 	mlx_loop(g.mlx);
 	return (0);
 }
-
-//erreur syscall Xlib (libx11 d'apres chatgpt)
-//norme PARSE_MAP
-
-// int main(int ac, char **av)
-// {
-// 	(void)ac;
-// 	t_g	g;
-
-// 	open_and_fill_map(&g, av);
-// 	for (int i = 0; i < g.map_height; i++)
-//     {
-//         printf("%s", g.map[i]); // Les lignes retournées par gnl incluent le '\n'
-//         free(g.map[i]); // Libérer la mémoire allouée par gnl
-//     }
-// 	printf("\n");
-//     free(g.map); // Libérer le tableau de la carte
-//     return (0);
-// }
